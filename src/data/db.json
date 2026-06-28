@@ -1,0 +1,151 @@
+{
+  "categories": [
+    {
+      "id": "cat_1",
+      "slug": "coding",
+      "title": "Coding",
+      "color": "bg-blue-50 dark:bg-blue-950/20 text-blue-600 dark:text-blue-400 border border-blue-100 dark:border-blue-900/30",
+      "img": "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=100&auto=format&fit=crop&q=60"
+    },
+    {
+      "id": "cat_2",
+      "slug": "design",
+      "title": "Design",
+      "color": "bg-purple-50 dark:bg-purple-950/20 text-purple-600 dark:text-purple-400 border border-purple-100 dark:border-purple-900/30",
+      "img": "https://images.unsplash.com/photo-1561070791-26c113006238?w=100&auto=format&fit=crop&q=60"
+    },
+    {
+      "id": "cat_3",
+      "slug": "style",
+      "title": "Style",
+      "color": "bg-pink-50 dark:bg-pink-950/20 text-pink-600 dark:text-pink-400 border border-pink-100 dark:border-pink-900/30",
+      "img": "https://images.unsplash.com/photo-1483985988355-763728e1935b?w=100&auto=format&fit=crop&q=60"
+    },
+    {
+      "id": "cat_4",
+      "slug": "travel",
+      "title": "Travel",
+      "color": "bg-emerald-50 dark:bg-emerald-950/20 text-emerald-600 dark:text-emerald-400 border border-emerald-100 dark:border-emerald-900/30",
+      "img": "https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=100&auto=format&fit=crop&q=60"
+    },
+    {
+      "id": "cat_5",
+      "slug": "food",
+      "title": "Food",
+      "color": "bg-orange-50 dark:bg-orange-950/20 text-orange-600 dark:text-orange-400 border border-orange-100 dark:border-orange-900/30",
+      "img": "https://images.unsplash.com/photo-1498837167922-ddd27525d352?w=100&auto=format&fit=crop&q=60"
+    }
+  ],
+  "posts": [
+    {
+      "id": "post_1",
+      "slug": "future-of-web-development-nextjs-and-beyond",
+      "title": "The Future of Web Development: Next.js & Server Components",
+      "desc": "## Introduction to a New Era\n\nThe web landscape is evolving at a breakneck pace. For years, client-side rendering (CSR) dominated the React ecosystem, offering fluid single-page transitions but demanding heavy JavaScript bundles that slowed down initial search rankings and performance.\n\nNow, the pendulum has swung back with **React Server Components (RSC)**. Next.js has catalyzed this paradigm, letting developers fetch data directly inside server files. In this post, we'll examine how this architectural shift alters user experience, cuts down Time-To-Interactive, and enables seamless page hydration.\n\n### Why Server Components Matter\n\nWhen we load React on the server, we get a huge win: **Zero-bundle-size components**. Code that executes solely on the server never gets downloaded by the client browser. For example, large parser libraries or database fetches can run purely on Node, leaving the user with a lightweight, optimized, supercharged HTML layout.\n\n```tsx\n// Example of a Server Component fetching database records directly\nimport { db } from '@/lib/db';\n\nexport default async function Feed() {\n  const posts = await db.post.findMany();\n  return (\n    <div>\n      {posts.map(post => (\n        <Card key={post.id} title={post.title} />\n      ))}\n    </div>\n  );\n}\n```\n\n### Performance Gains\n\nBy executing database lookups and content assembly closer to the source, full-stack React systems eliminate client-to-API round trips. This delivers exceptionally snappy pages and raises Google Core Web Vitals to a baseline perfect score. No more heavy, flickering placeholder spinners!\n\nAs we prepare our skills for 2026, understanding this mixed client-server hybrid blueprint is essential for building fast, beautiful digital projects.",
+      "excerpt": "React Server Components are revolutionizing how we think about full-stack web architectures. Discover why server-side execution is the next big standard.",
+      "img": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1000&auto=format&fit=crop&q=80",
+      "views": 1842,
+      "catSlug": "coding",
+      "createdAt": "2026-05-28T14:30:00.000Z",
+      "userEmail": "safak@lama.dev",
+      "userName": "Safak Lama",
+      "userImage": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150&auto=format&fit=crop&q=80",
+      "featured": true
+    },
+    {
+      "id": "post_2",
+      "slug": "mastering-tailwind-css-v4-for-ultrafast-ui",
+      "title": "Mastering Tailwind CSS v4.0 for Ultrafast Interfaces",
+      "desc": "## Tailwind v4.0 is Here\n\nTailwind has radically accelerated. The newly released v4.0 engine replaces PostCSS configuration with a native Rust compiler built directly into Vite, slashing compilation and build times down to milliseconds.\n\nBut speed isn't the only update. The configuration model is now natively inside CSS using CSS variables and `@theme` directives. Let's delve into how you can migrate and leverage this supercharged styling ecosystem.\n\n### The New CSS Configuration\n\nInstead of a monolithic `tailwind.config.js` file, you customize your theme keys directly where you write your root CSS:\n\n```css\n@import \"tailwindcss\";\n\n@theme {\n  --font-sans: \"Inter\", sans-serif;\n  --color-primary-500: #3b82f6;\n}\n```\n\nThis simple, decluttered syntax matches current modern CSS standards and eliminates configuration friction entirely. For developers seeking clean, high-performance web systems, Tailwind v4.0 feels like opening the windows and breathing fresh air.",
+      "excerpt": "Say goodbye to thick configurations. With an integrated Rust compiler and native CSS theme engines, Tailwind CSS v4.0 offers a simpler styling workflow.",
+      "img": "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=800&auto=format&fit=crop&q=80",
+      "views": 941,
+      "catSlug": "coding",
+      "createdAt": "2026-06-01T09:15:00.000Z",
+      "userEmail": "safak@lama.dev",
+      "userName": "Safak Lama",
+      "userImage": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150&auto=format&fit=crop&q=80"
+    },
+    {
+      "id": "post_3",
+      "slug": "ui-ux-micro-interactions-that-convert-like-magic",
+      "title": "UI/UX Micro-interactions That Convert Like Magic",
+      "desc": "## Details Make the Product\n\nWhat differentiates an average product from an extraordinary one? Often, it's not the grand feature list, but the subtle visual touchpoints called **micro-interactions**.\n\nA custom elastic stretch when you pull-to-refresh, a gentle scale feedback when you hover over a primary button, or a staggered fade-in entrance for card grids. These moments reward user actions, establish spatial relationships, and make interacting with code feel as tactile as running physical controls.\n\n### Designing Delight\n\nWhen implementing transitions, keep these constraints in mind:\n\n1. **Speed**: Micro-interactions must not get in the way. Complete them within `150ms` to `300ms` max.\n2. **Easing**: Rely on natural organic easing curves (like cubic-bezier physics) rather than boring linear math.\n3. **Clarity**: Ensure the interaction serves a functional purpose, such as indicating state transitions or directing focus.\n\nElevate your digital products by investing directly in responsive animation paradigms.",
+      "excerpt": "High-fidelity micro-interactions provide physical feedback in digital dimensions. Learn how subtle animations retain users and polish UI.",
+      "img": "https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?w=800&auto=format&fit=crop&q=80",
+      "views": 1204,
+      "catSlug": "design",
+      "createdAt": "2026-05-30T16:45:00.000Z",
+      "userEmail": "jane.designer@ux.com",
+      "userName": "Jane Cooper",
+      "userImage": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&auto=format&fit=crop&q=80"
+    },
+    {
+      "id": "post_4",
+      "slug": "the-minimalist-wardrobe-curating-timeless-essentials",
+      "title": "The Minimalist Wardrobe: Curating Timeless Essentials",
+      "desc": "## Quality Over Quantity\n\nIn an age of hyper-fast fashion, the minimalist wardrobe stands as a deliberate rebellion. Curating a high-quality minimal capsule isn't about rigid restrictions; it's about electing utility, durable textures, and a harmonious color base.\n\nBy focusing on items that layer beautifully and transitional colors (blacks, slates, creams, and whites), you eliminate visual decision exhaustion and cultivate a sharp aesthetic signature.\n\n### Building Your Foundation\n\nStart with five premium essentials:\n- A perfectly tailored heavyweight white cotton t-shirt.\n- A structure-retaining wool overcoat in concrete gray or black.\n- Hand-cut raw denim denim that shapes to your frame.\n- A versatile, breathable linen button-down.\n- High-finish leather boots or clean white calfskin trainers.\n\nEnjoy the freedom and clarity of choosing timeless forms over fast trends.",
+      "excerpt": "Clear the noise in your closet. Curating a deliberate, highly versatile capsule wardrobe reduces cognitive fatigue and stands the test of time.",
+      "img": "https://images.unsplash.com/photo-1483985988355-763728e1935b?w=800&auto=format&fit=crop&q=80",
+      "views": 812,
+      "catSlug": "style",
+      "createdAt": "2026-05-15T11:20:00.000Z",
+      "userEmail": "clara.v@style.co",
+      "userName": "Clara Vance",
+      "userImage": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&auto=format&fit=crop&q=80"
+    },
+    {
+      "id": "post_5",
+      "slug": "exploring-the-quiet-temples-of-kyoto",
+      "title": "Exploring the Quiet, Hidden Temples of Kyoto",
+      "desc": "## Beyond the Tourists\n\nMost travelers visiting Kyoto head straight to the orange tunnels of Fushimi Inari or the crowded paths of Arashiyama Bamboo Grove. However, Kyoto's truest essence resides in its quiet, lesser-known temples hidden along the misty northern hills.\n\nAt places like Tofuku-ji or the moss-covered gardens of Gio-ji, you can sit silently on cedar floorboards and watch rain drip off heavy maple leaves onto ancient stone lanterns.\n\n### The Way of Mindfulness\n\nKyoto's zen gardens are structured landscapes meant for quiet reflection. The layouts of sand, pebbles, and moss are designed to evoke mountainous ranges and flowing rivers. Spending a silent afternoon here allows you to disconnect from modern networks and find profound calm.\n\nStep off the main map and find Kyoto's serene secrets on your next journey.",
+      "excerpt": " Kyoto's true magic is found away from the crowds. Walk the quiet moss gardens and wooden pavillions of Kyoto's forgotten forest temples.",
+      "img": "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=800&auto=format&fit=crop&q=80",
+      "views": 612,
+      "catSlug": "travel",
+      "createdAt": "2026-05-10T08:00:00.000Z",
+      "userEmail": "mark.wander@travel.io",
+      "userName": "Mark Wander",
+      "userImage": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&auto=format&fit=crop&q=80"
+    }
+  ],
+  "comments": [
+    {
+      "id": "comm_1",
+      "createdAt": "2026-05-29T10:30:00.000Z",
+      "desc": "This was an absolutely spectacular writeup! The explanation of React Server Components and how we save client-side bandwidth makes total sense. Can't wait to try implementing this in my next client project.",
+      "postSlug": "future-of-web-development-nextjs-and-beyond",
+      "userEmail": "john.coder@dev.com",
+      "userName": "John Coder",
+      "userImage": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150&auto=format&fit=crop&q=80"
+    },
+    {
+      "id": "comm_2",
+      "createdAt": "2026-05-30T11:15:00.000Z",
+      "desc": "Super helpful. Do Server Components support client-side hooks like state or context? Or do we have to mark children with 'use client'?",
+      "postSlug": "future-of-web-development-nextjs-and-beyond",
+      "userEmail": "alice.tech@engineer.com",
+      "userName": "Alice Tech",
+      "userImage": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&auto=format&fit=crop&q=80"
+    },
+    {
+      "id": "comm_3",
+      "createdAt": "2026-06-02T13:40:00.000Z",
+      "desc": "The new CSS variable configuration in Tailwind v4 is so clean! No more massive config files to parse. Great summary!",
+      "postSlug": "mastering-tailwind-css-v4-for-ultrafast-ui",
+      "userEmail": "bob.builder@css.com",
+      "userName": "Bob CSS",
+      "userImage": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&auto=format&fit=crop&q=80"
+    }
+  ],
+  "users": [
+    {
+      "id": "user_safak",
+      "name": "Safak Lama",
+      "email": "safak@lama.dev",
+      "password": "admin",
+      "image": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150",
+      "role": "admin"
+    }
+  ]
+}
