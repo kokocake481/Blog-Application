@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { X, Mail, Lock, User, Image as ImageIcon, Sparkles, CheckCircle, AlertCircle } from 'lucide-react';
 
 const AVATAR_PRESETS = [
@@ -24,6 +24,17 @@ export default function AuthModel({ isOpen, onClose, onAuthSuccess }) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [successMsg, setSuccessMsg] = useState(null);
+
+  useEffect(() => {
+    if (!isOpen) {
+      setError(null);
+      setSuccessMsg(null);
+      setEmail('');
+      setPassword('');
+      setName('');
+      setCustomAvatar('');
+    }
+  }, [isOpen]);
 
   if (!isOpen) return null;
 
@@ -166,7 +177,7 @@ export default function AuthModel({ isOpen, onClose, onAuthSuccess }) {
                   placeholder="e.g. Grace Hopper"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className="w-full text-slate-900 dark:text-white bg-slate-50/50 dark:bg-slate-950 border border-slate-200 dark:border-slate-850 rounded-xl pl-9 pr-3 py-2.5 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-blue-600 focus:bg-white focus:border-transparent"
+                  className="w-full text-slate-900 dark:text-white bg-slate-50/50 dark:bg-slate-950 border border-slate-200 dark:border-slate-850 rounded-xl pl-9 pr-3 py-2.5 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
                 />
               </div>
             </div>
@@ -186,7 +197,7 @@ export default function AuthModel({ isOpen, onClose, onAuthSuccess }) {
                 placeholder="e.g. grace@example.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full text-slate-900 dark:text-white bg-slate-50/50 dark:bg-slate-950 border border-slate-200 dark:border-slate-850 rounded-xl pl-9 pr-3 py-2.5 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-blue-600 focus:bg-white focus:border-transparent"
+                className="w-full text-slate-900 dark:text-white bg-slate-50/50 dark:bg-slate-950 border border-slate-200 dark:border-slate-850 rounded-xl pl-9 pr-3 py-2.5 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-blue-600  focus:border-transparent"
               />
             </div>
           </div>
@@ -205,7 +216,7 @@ export default function AuthModel({ isOpen, onClose, onAuthSuccess }) {
                 placeholder="Enter safe password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full text-slate-900 dark:text-white bg-slate-50/50 dark:bg-slate-950 border border-slate-200 dark:border-slate-850 rounded-xl pl-9 pr-3 py-2.5 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-blue-600 focus:bg-white focus:border-transparent"
+                className="w-full text-slate-900 dark:text-white bg-slate-50/50 dark:bg-slate-950 border border-slate-200 dark:border-slate-850 rounded-xl pl-9 pr-3 py-2.5 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
               />
             </div>
           </div>
