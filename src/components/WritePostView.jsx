@@ -79,7 +79,7 @@ export default function WritePostView({ onBack, currentUser, onPostCreated }) {
       setSuccess(true);
       setTimeout(() => {
         onPostCreated(postData.slug);
-      }, 1500);
+      }, 6000);
     } catch (err) {
       console.error('Error publishing post:', err);
       setError(err.message || 'Something went wrong while publishing.');
@@ -156,7 +156,7 @@ export default function WritePostView({ onBack, currentUser, onPostCreated }) {
                 onChange={(e) => setTitle(e.target.value)}
                 placeholder="Give your story a catchy title..."
                 required
-                className="w-full text-slate-900 dark:text-white bg-slate-50/50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl px-4 py-4 text-lg font-bold focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent focus:bg-white"
+                className="w-full text-slate-900 dark:text-white bg-slate-50/50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl px-4 py-4 text-lg font-bold focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent focus:bg-slate-50 dark:focus:bg-slate-900"
                 id="write-title-input"
               />
             </div>
@@ -242,7 +242,7 @@ export default function WritePostView({ onBack, currentUser, onPostCreated }) {
               placeholder="Tell your story... Use markdown to format. Explain concepts clearly for visitors."
               required
               rows={12}
-              className="w-full text-slate-800 dark:text-slate-100 bg-slate-50/50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 text-sm sm:text-base leading-relaxed focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent focus:bg-white resize-y font-sans"
+              className="w-full text-slate-800 dark:text-slate-100 bg-slate-50/50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 text-sm sm:text-base leading-relaxed focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent dark:focus:bg-slate-900 resize-y font-sans"
               id="write-desc-input"
             />
           </div>

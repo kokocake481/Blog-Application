@@ -44,11 +44,13 @@ export default function App() {
   };
 
   const handleReadPost = (slug) => {
-    setView(`post: ${slug}`);
+     console.log("slug:", slug)
+  console.log("view:", `post:${slug}`)
+    setView(`post:${slug}`);
   };
 
   const handlePostCreated = (slug) => {
-    setView(`post: ${slug}`);
+    setView(`post:${slug}`);
   };
 
   const handleSelectCat = (slug) => {

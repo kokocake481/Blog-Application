@@ -105,7 +105,7 @@ export default function CardList({ activeCat, onReadPost }) {
             <article key={post.id} className="flex flex-col sm:flex-row gap-6 p-4 rounded-2xl bg-slate-50/50 dark:bg-slate-900/10 hover:bg-slate-100/50 dark:hover:bg-slate-900/20 transition-colors" id={`post-card-${post.slug}`}>
               {/* Card Image */}
               {post.img && (
-                <div onClick={() => onReactPost(post.slug)} className="w-full sm:w-48 h-36 rounded-xl overflow-hidden flex-shrink-0 cursor-pointer">
+                <div onClick={() => onReadPost(post.slug)} className="w-full sm:w-48 h-36 rounded-xl overflow-hidden flex-shrink-0 cursor-pointer">
                   <img
                     src={post.img}
                     alt={post.title}
