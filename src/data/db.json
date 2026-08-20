@@ -130,7 +130,7 @@
       "desc": "Testing for the issue fixed :)",
       "excerpt": "Testing for the issue fixed :)",
       "img": "https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=1000",
-      "views": 12,
+      "views": 18,
       "catSlug": "coding",
       "createdAt": "2026-08-17T18:58:05.368Z",
       "userEmail": "koko.isasleep@gmail.com",
@@ -145,7 +145,7 @@
       "desc": "Would love to post story.",
       "excerpt": "Would love to post story.",
       "img": "https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=1000",
-      "views": 6,
+      "views": 10,
       "catSlug": "design",
       "createdAt": "2026-08-17T19:01:16.316Z",
       "userEmail": "safak@lama.dev",
@@ -160,7 +160,7 @@
       "desc": "Option not displayed in Category Slugs. Issue was fixed. feature is working fine.",
       "excerpt": "Option not displayed in Category Slugs. Issue was fixed. feature is working fine.",
       "img": "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=1000",
-      "views": 4,
+      "views": 6,
       "catSlug": "style",
       "createdAt": "2026-08-18T10:53:47.827Z",
       "userEmail": "safak@lama.dev",
@@ -211,6 +211,24 @@
       "userEmail": "bob.builder@css.com",
       "userName": "Bob CSS",
       "userImage": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&auto=format&fit=crop&q=80"
+    },
+    {
+      "id": "comm_1787225029245",
+      "createdAt": "2026-08-20T11:23:49.245Z",
+      "desc": "My first comments",
+      "postSlug": "my-second-post",
+      "userEmail": "safak@lama.dev",
+      "userName": "Safak Lama",
+      "userImage": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150"
+    },
+    {
+      "id": "comm_1787225450864",
+      "createdAt": "2026-08-20T11:30:50.864Z",
+      "desc": "My second comments",
+      "postSlug": "my-second-post",
+      "userEmail": "safak@lama.dev",
+      "userName": "Safak Lama",
+      "userImage": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150"
     }
   ],
   "users": [

@@ -27,9 +27,14 @@ export default function App() {
     return saved ? JSON.parse(saved) : null;
   });
 
-  useEffect(() => {
-    localStorage.setItem("lama_blog_theme", theme);
-  }, [theme]);
+ useEffect(() => {
+  localStorage.setItem("lama_blog_theme", theme);
+  if (theme === "dark") {
+    document.documentElement.classList.add("dark");
+  } else {
+    document.documentElement.classList.remove("dark");
+  }
+}, [theme]);
 
   useEffect(() => {
     if (currentUser) {
@@ -40,8 +45,12 @@ export default function App() {
   }, [currentUser]);
 
   const toggleTheme = () => {
-    setTheme((prev) => (prev === "light" ? "dark" : "light"));
-  };
+  setTheme((prev) => {
+    const newTheme = prev === "light" ? "dark" : "light";
+    document.documentElement.classList.toggle("dark", newTheme === "dark");
+    return newTheme;
+  });
+};
 
   const handleReadPost = (slug) => {
      console.log("slug:", slug)
@@ -61,7 +70,7 @@ export default function App() {
   };
 
   return (
-    <div className={theme === "dark" ? "dark" : ""} id="app-root-theme-wrapper">
+    <div id="app-root-theme-wrapper">
       <div className="min-h-screen bg-white dark:bg-slate-950 text-slate-800 dark:text-slate-100 font-sans transition-colors duration-300">
         {/* Navigation Bar*/}
         <Navbar

@@ -319,7 +319,7 @@ export default function SinglePostView({ slug, onBack, currentUser }) {
                 }
                 required
                 rows={3}
-                className="w-full text-slate-900 dark:text-white bg-slate-50/50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-4 py-3 text-xs sm:text-sm leading-relaxed focus:outline-none focus:ring-2 focus:ring-blue-600 focus:bg-white resize-y"
+                className="w-full text-slate-900 dark:text-white bg-slate-50/50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-4 py-3 text-xs sm:text-sm leading-relaxed focus:outline-none focus:ring-2 focus:ring-blue-600 focus:bg-slate-50 dark:focus:bg-slate-900 resize-y"
                 id="comment-input"
               />
               <div className="flex justify-between items-center mt-2.5">
