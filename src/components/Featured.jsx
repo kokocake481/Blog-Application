@@ -80,7 +80,7 @@ export default function Featured({ onReadPost }) {
             <div className="flex items-center space-x-4 text-xs font-mono text-slate-500 dark:text-slate-400 ">
               <span className="flex items-center space-x-1 ">
                 <Calendar size={13} className="text-blue-500" />
-                <span> {formatDate(featuredPost.cretadAt)}</span>
+                <span> {formatDate(featuredPost.createdAt )}</span>
               </span>
               <span>*</span>
               <span className="uppercase text-blue-600 dark:text-blue-400 font-bold tracking-wider">

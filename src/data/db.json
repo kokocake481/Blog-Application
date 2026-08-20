@@ -44,7 +44,7 @@
       "desc": "## Introduction to a New Era\n\nThe web landscape is evolving at a breakneck pace. For years, client-side rendering (CSR) dominated the React ecosystem, offering fluid single-page transitions but demanding heavy JavaScript bundles that slowed down initial search rankings and performance.\n\nNow, the pendulum has swung back with **React Server Components (RSC)**. Next.js has catalyzed this paradigm, letting developers fetch data directly inside server files. In this post, we'll examine how this architectural shift alters user experience, cuts down Time-To-Interactive, and enables seamless page hydration.\n\n### Why Server Components Matter\n\nWhen we load React on the server, we get a huge win: **Zero-bundle-size components**. Code that executes solely on the server never gets downloaded by the client browser. For example, large parser libraries or database fetches can run purely on Node, leaving the user with a lightweight, optimized, supercharged HTML layout.\n\n```tsx\n// Example of a Server Component fetching database records directly\nimport { db } from '@/lib/db';\n\nexport default async function Feed() {\n  const posts = await db.post.findMany();\n  return (\n    <div>\n      {posts.map(post => (\n        <Card key={post.id} title={post.title} />\n      ))}\n    </div>\n  );\n}\n```\n\n### Performance Gains\n\nBy executing database lookups and content assembly closer to the source, full-stack React systems eliminate client-to-API round trips. This delivers exceptionally snappy pages and raises Google Core Web Vitals to a baseline perfect score. No more heavy, flickering placeholder spinners!\n\nAs we prepare our skills for 2026, understanding this mixed client-server hybrid blueprint is essential for building fast, beautiful digital projects.",
       "excerpt": "React Server Components are revolutionizing how we think about full-stack web architectures. Discover why server-side execution is the next big standard.",
       "img": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1000&auto=format&fit=crop&q=80",
-      "views": 1842,
+      "views": 1844,
       "catSlug": "coding",
       "createdAt": "2026-05-28T14:30:00.000Z",
       "userEmail": "safak@lama.dev",
@@ -130,7 +130,7 @@
       "desc": "Testing for the issue fixed :)",
       "excerpt": "Testing for the issue fixed :)",
       "img": "https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=1000",
-      "views": 18,
+      "views": 20,
       "catSlug": "coding",
       "createdAt": "2026-08-17T18:58:05.368Z",
       "userEmail": "koko.isasleep@gmail.com",
@@ -229,6 +229,24 @@
       "userEmail": "safak@lama.dev",
       "userName": "Safak Lama",
       "userImage": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150"
+    },
+    {
+      "id": "comm_1787254414014",
+      "createdAt": "2026-08-20T19:33:34.014Z",
+      "desc": "comment by koko:3",
+      "postSlug": "my-second-post",
+      "userEmail": "koko.isasleep@gmail.com",
+      "userName": "koko",
+      "userImage": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150"
+    },
+    {
+      "id": "comm_1787254475368",
+      "createdAt": "2026-08-20T19:34:35.368Z",
+      "desc": "My first comment",
+      "postSlug": "future-of-web-development-nextjs-and-beyond",
+      "userEmail": "koko.isasleep@gmail.com",
+      "userName": "koko",
+      "userImage": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150"
     }
   ],
   "users": [
