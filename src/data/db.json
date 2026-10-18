@@ -182,6 +182,21 @@
       "userName": "Safak Lama",
       "userImage": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150",
       "featured": false
+    },
+    {
+      "id": "post_1792357809505",
+      "slug": "design-brings-attention",
+      "title": "Design brings Attention!!",
+      "desc": "Design guide users eyes to what matters most. Use size, color, and spacing to show importance.!!",
+      "excerpt": "Design guide users eyes to what matters most. Use size, color, and spacing to show importance.!!",
+      "img": "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=1000",
+      "views": 2,
+      "catSlug": "design",
+      "createdAt": "2026-10-18T21:10:09.506Z",
+      "userEmail": "safak@lama.dev",
+      "userName": "Safak Lama",
+      "userImage": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150",
+      "featured": false
     }
   ],
   "comments": [
@@ -247,17 +262,18 @@
       "userEmail": "koko.isasleep@gmail.com",
       "userName": "koko",
       "userImage": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150"
+    },
+    {
+      "id": "comm_1792357884799",
+      "createdAt": "2026-10-18T21:11:24.799Z",
+      "desc": "Design should feel natural and intuitive to users.",
+      "postSlug": "design-brings-attention",
+      "userEmail": "safak@lama.dev",
+      "userName": "Safak Lama",
+      "userImage": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150"
     }
   ],
   "users": [
-    {
-      "id": "user_safak",
-      "name": "Safak Lama",
-      "email": "safak@lama.dev",
-      "password": "admin",
-      "image": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150",
-      "role": "admin"
-    },
     {
       "id": "user_1783420365190",
       "name": "koko",
@@ -265,6 +281,14 @@
       "password": "hello",
       "image": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150",
       "role": "member"
+    },
+    {
+      "id": "user_safak",
+      "name": "Safak Lama",
+      "email": "safak@lama.dev",
+      "password": "$2b$10$MywwUYVLQS8.aGiwUmKgiOpSu3QQKq.0TyK7M2V887cLYZvU7MY7G",
+      "image": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150",
+      "role": "admin"
     }
   ]
 }

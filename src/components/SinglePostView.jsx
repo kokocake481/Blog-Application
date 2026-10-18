@@ -149,10 +149,12 @@ export default function SinglePostView({ slug, onBack, currentUser }) {
     };
 
     try {
+      const token = localStorage.getItem('lama_blog_token');
       const res = await fetch('/api/comments', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify(payload)
       });
