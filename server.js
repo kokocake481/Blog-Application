@@ -5,7 +5,25 @@ import { fileURLToPath } from 'url';
 import { createServer as createViteServer } from 'vite';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
-const JWT_SECRET = process.env.JWT_SECRET || 'lamablog_secret_key_2024';
+const JWT_SECRET = process.env.JWT_SECRET;
+
+// JWT Authentication Middleware
+function authenticateToken(req, res, next) {
+  const authHeader = req.headers['authorization'];
+  const token = authHeader && authHeader.split(' ')[1];
+
+  if (!token) {
+    return res.status(401).json({ message: 'Access denied. Unauthorised access.' }); //Access denied. No token provided.
+  }
+
+  try {
+    const verified = jwt.verify(token, JWT_SECRET);
+    req.user = verified;
+    next();
+  } catch (err) {
+    return res.status(403).json({ message: 'Your session has expired. Please login again.' }); //Invalid or expired token.
+  }
+}
 
 // Setup ES Module __dirname equivalent
 const __filename = fileURLToPath(import.meta.url);
@@ -21,7 +39,7 @@ function readDb() {
       if (!parsed.users) {
         parsed.users = [];
       }
-      
+
       // Ensure the default author/admin user is seeded
       if (!parsed.users.some(u => u.email === 'safak@lama.dev')) {
         parsed.users.push({
@@ -39,10 +57,10 @@ function readDb() {
   } catch (err) {
     console.error('Error reading JSON DB, using empty fallback', err);
   }
-  return { 
-    categories: [], 
-    posts: [], 
-    comments: [], 
+  return {
+    categories: [],
+    posts: [],
+    comments: [],
     users: [
       {
         id: 'user_safak',
@@ -52,7 +70,7 @@ function readDb() {
         image: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150',
         role: 'admin'
       }
-    ] 
+    ]
   };
 }
 
@@ -114,15 +132,15 @@ async function startServer() {
       role: normalizedEmail === 'safak@lama.dev' ? 'admin' : 'member'
     };
  */
-const hashedPassword = await bcrypt.hash(password, 10);
-const newUser = {
-  id: `user_${Date.now()}`,
-  name: name.trim(),
-  email: normalizedEmail,
-  password: hashedPassword,
-  image: image || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150', // high quality female/male elegant default
-  role: normalizedEmail === 'safak@lama.dev' ? 'admin' : 'member'   
-};
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const newUser = {
+      id: `user_${Date.now()}`,
+      name: name.trim(),
+      email: normalizedEmail,
+      password: hashedPassword,
+      image: image || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150', // high quality female/male elegant default
+      role: normalizedEmail === 'safak@lama.dev' ? 'admin' : 'member'
+    };
 
     db.users.push(newUser);
     const success = writeDb(db);
@@ -146,21 +164,23 @@ const newUser = {
     const user = db.users.find(u => u.email === normalizedEmail);
 
     const isPasswordValid = await bcrypt.compare(password, user.password);
-    console.log('Attempting login for:', normalizedEmail);
-console.log('User found:', user ? 'yes' : 'no');
-console.log('Stored password:', user?.password);
 
-console.log('Password valid:', isPasswordValid);
+    /*
+    console.log('Attempting login for:', normalizedEmail);
+    console.log('User found:', user ? 'yes' : 'no');
+    console.log('Stored password:', user?.password);
+    console.log('Password valid:', isPasswordValid);
+    */
 
     if (!user || !isPasswordValid) {
       return res.status(401).json({ message: 'Invalid email or password.' });
     }
 
-  const token = jwt.sign(
-  { id: user.id, email: user.email, role: user.role },
-  JWT_SECRET,
-  { expiresIn: '7d' }
-  );
+    const token = jwt.sign(
+      { id: user.id, email: user.email, role: user.role },
+      JWT_SECRET,
+      { expiresIn: '7d' }
+    );
 
     const { password: _, ...sessionUser } = user;
     res.json({ ...sessionUser, token });
@@ -240,7 +260,7 @@ console.log('Password valid:', isPasswordValid);
   });
 
   // API: Write/Publish a new post
-  app.post('/api/posts', (req, res) => {
+  app.post('/api/posts', authenticateToken, (req, res) => {
     const { title, desc, img, catSlug, userEmail, userName, userImage } = req.body;
 
     if (!title || !desc || !catSlug) {
@@ -249,7 +269,7 @@ console.log('Password valid:', isPasswordValid);
 
     const db = readDb();
     const baseSlug = slugify(title);
-    
+
     // Ensure slug uniqueness
     let targetSlug = baseSlug;
     let counter = 1;
@@ -265,8 +285,8 @@ console.log('Password valid:', isPasswordValid);
       .replace(/`{3}[\s\S]*?`{3}/g, '') // Strip codeblocks
       .replace(/`.*?`/g, '') // Strip inline code
       .trim();
-    const excerpt = strippedText.length > 140 
-      ? strippedText.substring(0, 137) + '...' 
+    const excerpt = strippedText.length > 140
+      ? strippedText.substring(0, 137) + '...'
       : strippedText;
 
     const newPost = {
@@ -286,7 +306,7 @@ console.log('Password valid:', isPasswordValid);
     };
 
     db.posts.push(newPost);
-    
+
     const success = writeDb(db);
     if (!success) {
       return res.status(500).json({ message: 'Error saving post to database.' });
@@ -311,7 +331,7 @@ console.log('Password valid:', isPasswordValid);
   });
 
   // API: Post a comment
-  app.post('/api/comments', (req, res) => {
+  app.post('/api/comments', authenticateToken, (req, res) => {
     const { postSlug, desc, userEmail, userName, userImage } = req.body;
 
     if (!postSlug || !desc) {

@@ -12,7 +12,7 @@ const AVATAR_PRESETS = [
 export default function AuthModel({ isOpen, onClose, onAuthSuccess }) {
   // Mode: 'login' | 'register'
   const [mode, setMode] = useState('login');
-  
+
   // Registration form state
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -62,14 +62,14 @@ export default function AuthModel({ isOpen, onClose, onAuthSuccess }) {
     setError(null);
 
     const targetUrl = mode === 'login' ? '/api/auth/login' : '/api/auth/register';
-    const payload = mode === 'login' 
+    const payload = mode === 'login'
       ? { email, password }
-      : { 
-          name, 
-          email, 
-          password, 
-          image: customAvatar.trim() || avatar 
-        };
+      : {
+        name,
+        email,
+        password,
+        image: customAvatar.trim() || avatar
+      };
 
     try {
       const res = await fetch(targetUrl, {
@@ -87,8 +87,14 @@ export default function AuthModel({ isOpen, onClose, onAuthSuccess }) {
       }
 
       setSuccessMsg(mode === 'login' ? 'Welcome back! Logged in successfully.' : 'Account created! Welcome to the community.');
+
+      // Save JWT token to localStorage
+      if (data.token) {
+        localStorage.setItem('lama_blog_token', data.token);
+      }
+
       onAuthSuccess(data);
-      
+
       setTimeout(() => {
         onClose();
         // Reset states
@@ -110,13 +116,13 @@ export default function AuthModel({ isOpen, onClose, onAuthSuccess }) {
   return (
     <div className="top-20 left-0 right-0 bottom-0 z-[100] flex items-center justify-center p-4">
       {/* Backdrop overlay filter */}
-      <div 
-        onClick={onClose} 
+      <div
+        onClick={onClose}
         className="absolute inset-0 bg-slate-900/40 dark:bg-slate-950/80 backdrop-blur-sm transition-opacity"
       />
 
       {/* Modal Box Chassis */}
-      <div 
+      <div
         className="relative bg-white dark:bg-slate-900 max-w-md w-full rounded-3xl border border-slate-100 dark:border-slate-800 shadow-2xl p-6 sm:p-8 animate-in fade-in zoom-in-95 duration-200"
         id="auth-modal-window"
       >
@@ -138,8 +144,8 @@ export default function AuthModel({ isOpen, onClose, onAuthSuccess }) {
             {mode === 'login' ? 'Sign In to LamaBlog' : 'Create Custom Account'}
           </h2>
           <p className="text-xs text-slate-500 dark:text-slate-400">
-            {mode === 'login' 
-              ? 'Enter your credentials or use the admin mode preset.' 
+            {mode === 'login'
+              ? 'Enter your credentials or use the admin mode preset.'
               : 'Sign up to write custom articles and post comments under your own name!'
             }
           </p>
@@ -239,15 +245,14 @@ export default function AuthModel({ isOpen, onClose, onAuthSuccess }) {
                           setAvatar(p.url);
                           setCustomAvatar('');
                         }}
-                        className={`relative rounded-full overflow-hidden h-9 w-9 border-2 transition-all cursor-pointer ${
-                          isSelected ? 'border-blue-600 scale-105' : 'border-transparent'
-                        }`}
+                        className={`relative rounded-full overflow-hidden h-9 w-9 border-2 transition-all cursor-pointer ${isSelected ? 'border-blue-600 scale-105' : 'border-transparent'
+                          }`}
                         title={p.name}
                       >
-                        <img 
-                          src={p.url} 
-                          alt={p.name} 
-                          className="h-full w-full object-cover" 
+                        <img
+                          src={p.url}
+                          alt={p.name}
+                          className="h-full w-full object-cover"
                           referrerPolicy="no-referrer"
                         />
                       </button>

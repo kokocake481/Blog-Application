@@ -275,20 +275,20 @@
   ],
   "users": [
     {
-      "id": "user_1783420365190",
-      "name": "koko",
-      "email": "koko.isasleep@gmail.com",
-      "password": "hello",
-      "image": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150",
-      "role": "member"
-    },
-    {
       "id": "user_safak",
       "name": "Safak Lama",
       "email": "safak@lama.dev",
       "password": "$2b$10$MywwUYVLQS8.aGiwUmKgiOpSu3QQKq.0TyK7M2V887cLYZvU7MY7G",
       "image": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150",
       "role": "admin"
+    },
+    {
+      "id": "user_1792460359123",
+      "name": "KOKO",
+      "email": "koko.isasleep@gmail.com",
+      "password": "$2b$10$DLBW8XlaL6p2VHbg064r/e8URPYWp0bCYqW1SWY2T/O.AfPkllXx2",
+      "image": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150",
+      "role": "member"
     }
   ]
 }

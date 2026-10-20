@@ -27,34 +27,35 @@ export default function App() {
     return saved ? JSON.parse(saved) : null;
   });
 
- useEffect(() => {
-  localStorage.setItem("lama_blog_theme", theme);
-  if (theme === "dark") {
-    document.documentElement.classList.add("dark");
-  } else {
-    document.documentElement.classList.remove("dark");
-  }
-}, [theme]);
+  useEffect(() => {
+    localStorage.setItem("lama_blog_theme", theme);
+    if (theme === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, [theme]);
 
   useEffect(() => {
     if (currentUser) {
       localStorage.setItem("lama_blog_user", JSON.stringify(currentUser));
     } else {
       localStorage.removeItem("lama_blog_user");
+      localStorage.removeItem("lama_blog_token"); // ← remove token on logout!
     }
   }, [currentUser]);
 
   const toggleTheme = () => {
-  setTheme((prev) => {
-    const newTheme = prev === "light" ? "dark" : "light";
-    document.documentElement.classList.toggle("dark", newTheme === "dark");
-    return newTheme;
-  });
-};
+    setTheme((prev) => {
+      const newTheme = prev === "light" ? "dark" : "light";
+      document.documentElement.classList.toggle("dark", newTheme === "dark");
+      return newTheme;
+    });
+  };
 
   const handleReadPost = (slug) => {
-     console.log("slug:", slug)
-  console.log("view:", `post:${slug}`)
+    console.log("slug:", slug)
+    console.log("view:", `post:${slug}`)
     setView(`post:${slug}`);
   };
 
@@ -81,7 +82,7 @@ export default function App() {
           currentUser={currentUser}
           setCurrentUser={setCurrentUser}
         />
-      
+
 
         {/* Global Content Chassis */}
         <main className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 py-8">

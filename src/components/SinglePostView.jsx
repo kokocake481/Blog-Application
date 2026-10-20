@@ -5,7 +5,7 @@ export default function SinglePostView({ slug, onBack, currentUser }) {
   const [post, setPost] = useState(null);
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState('');
-  
+
   const [loadingPost, setLoadingPost] = useState(true);
   const [submittingComment, setSubmittingComment] = useState(false);
   const [commentError, setCommentError] = useState(null);
@@ -56,8 +56,8 @@ export default function SinglePostView({ slug, onBack, currentUser }) {
           const content = codeContent.join('\n');
           codeContent = [];
           return (
-            <pre 
-              key={idx} 
+            <pre
+              key={idx}
               className="bg-slate-900 text-slate-100 p-4 rounded-xl font-mono text-xs overflow-x-auto my-4 border border-slate-800"
             >
               <code>{content}</code>
@@ -207,7 +207,7 @@ export default function SinglePostView({ slug, onBack, currentUser }) {
 
   return (
     <div className="max-w-4xl mx-auto my-8 space-y-8" id={`single-article-${post.slug}`}>
-      
+
       {/* Return button row */}
       <button
         onClick={onBack}
@@ -349,8 +349,8 @@ export default function SinglePostView({ slug, onBack, currentUser }) {
             </div>
           ) : (
             comments.map((comm) => (
-              <div 
-                key={comm.id} 
+              <div
+                key={comm.id}
                 className="flex items-start space-x-3 p-4 bg-slate-50/50 dark:bg-slate-900/10 border border-slate-100 dark:border-slate-900 rounded-xl transition-colors"
                 id={`comment-${comm.id}`}
               >
