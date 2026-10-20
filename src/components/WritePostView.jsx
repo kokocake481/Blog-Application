@@ -15,7 +15,7 @@ export default function WritePostView({ onBack, currentUser, onPostCreated }) {
   const [catSlug, setCatSlug] = useState('');
   const [img, setImg] = useState('');
   const [desc, setDesc] = useState('');
-  
+
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
@@ -55,17 +55,19 @@ export default function WritePostView({ onBack, currentUser, onPostCreated }) {
       title: title.trim(),
       desc: desc.trim(),
       img: img.trim() || 'https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=1000',
-      catSlug,
-      userEmail: currentUser.email,
-      userName: currentUser.name,
-      userImage: currentUser.image
+      catSlug
+      //userEmail: currentUser.email,
+      //userName: currentUser.name,
+      //userImage: currentUser.image
     };
 
     try {
+      const token = localStorage.getItem('lama_blog_token');
       const res = await fetch('/api/posts', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify(payload)
       });
@@ -112,7 +114,7 @@ export default function WritePostView({ onBack, currentUser, onPostCreated }) {
 
   return (
     <div className="max-w-4xl mx-auto my-8 space-y-6" id="write-post-view">
-      
+
       {/* Back Header panel */}
       <div className="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-4">
         <button
@@ -212,11 +214,10 @@ export default function WritePostView({ onBack, currentUser, onPostCreated }) {
                     key={idx}
                     type="button"
                     onClick={() => selectPresetImage(preset.url)}
-                    className={`text-[10px] px-2.5 py-1 rounded-lg border font-medium cursor-pointer transition-all ${
-                      img === preset.url
+                    className={`text-[10px] px-2.5 py-1 rounded-lg border font-medium cursor-pointer transition-all ${img === preset.url
                         ? 'border-blue-600 bg-blue-50 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400'
                         : 'border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-900 text-slate-600 dark:text-slate-400'
-                    }`}
+                      }`}
                   >
                     {preset.name}
                   </button>
@@ -259,9 +260,8 @@ export default function WritePostView({ onBack, currentUser, onPostCreated }) {
             <button
               type="submit"
               disabled={submitting}
-              className={`px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-xs font-bold flex items-center space-x-2 shadow-sm transition-all cursor-pointer ${
-                submitting ? 'opacity-80 pointer-events-none' : ''
-              }`}
+              className={`px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-xs font-bold flex items-center space-x-2 shadow-sm transition-all cursor-pointer ${submitting ? 'opacity-80 pointer-events-none' : ''
+                }`}
               id="write-publish-btn"
             >
               <Save size={14} />

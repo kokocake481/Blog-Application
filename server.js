@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import express from 'express';
 import path from 'path';
 import fs from 'fs';
@@ -163,18 +164,26 @@ async function startServer() {
     const normalizedEmail = email.toLowerCase().trim();
     const user = db.users.find(u => u.email === normalizedEmail);
 
+    if (!user) {
+      return res.status(401).json({ message: 'Invalid email' });
+    }
+
     const isPasswordValid = await bcrypt.compare(password, user.password);
+
+    if (!isPasswordValid) {
+      return res.status(401).json({ message: 'password.' });
+    }
 
     /*
     console.log('Attempting login for:', normalizedEmail);
     console.log('User found:', user ? 'yes' : 'no');
     console.log('Stored password:', user?.password);
     console.log('Password valid:', isPasswordValid);
-    */
-
+    
     if (!user || !isPasswordValid) {
       return res.status(401).json({ message: 'Invalid email or password.' });
     }
+    */
 
     const token = jwt.sign(
       { id: user.id, email: user.email, role: user.role },
@@ -261,13 +270,21 @@ async function startServer() {
 
   // API: Write/Publish a new post
   app.post('/api/posts', authenticateToken, (req, res) => {
-    const { title, desc, img, catSlug, userEmail, userName, userImage } = req.body;
+    const { title, desc, img, catSlug } = req.body;
+    //const { title, desc, img, catSlug, userEmail, userName, userImage } = req.body;
 
     if (!title || !desc || !catSlug) {
       return res.status(400).json({ message: 'Title, content, and category are required.' });
     }
 
     const db = readDb();
+
+    const author = db.users.find(u => u.email === req.user.email);
+    if (!author) {
+      return res.status(401).json({ message: 'User not found. Please login again.' });
+    }
+
+
     const baseSlug = slugify(title);
 
     // Ensure slug uniqueness
@@ -299,10 +316,14 @@ async function startServer() {
       views: 0,
       catSlug,
       createdAt: new Date().toISOString(),
-      userEmail: userEmail || 'guest@example.com',
-      userName: userName || 'Guest Writer',
-      userImage: userImage || 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150',
+      userEmail: author.email,
+      userName: author.name,
+      userImage: author.image,
       featured: false
+      //userEmail: userEmail || 'guest@example.com',
+      //userName: userName || 'Guest Writer',
+      //userImage: userImage || 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150',
+
     };
 
     db.posts.push(newPost);
@@ -332,13 +353,20 @@ async function startServer() {
 
   // API: Post a comment
   app.post('/api/comments', authenticateToken, (req, res) => {
-    const { postSlug, desc, userEmail, userName, userImage } = req.body;
+    const { postSlug, desc } = req.body;
+    //const { postSlug, desc, userEmail, userName, userImage } = req.body;
 
     if (!postSlug || !desc) {
       return res.status(400).json({ message: 'postSlug and description are required' });
     }
 
     const db = readDb();
+
+    const author = db.users.find(u => u.email === req.user.email);
+    if (!author) {
+      return res.status(401).json({ message: 'User not found. Please login again.' });
+    }
+
     // Validate that post exists
     if (!db.posts.some(p => p.slug === postSlug)) {
       return res.status(404).json({ message: 'Cannot comment on non-existent post' });
@@ -349,9 +377,12 @@ async function startServer() {
       createdAt: new Date().toISOString(),
       desc,
       postSlug,
-      userEmail: userEmail || 'guest@example.com',
-      userName: userName || 'Anonymous Reader',
-      userImage: userImage || 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150'
+      userEmail: author.email,
+      userName: author.name,
+      userImage: author.image
+      //userEmail: userEmail || 'guest@example.com',
+      //userName: userName || 'Anonymous Reader',
+      //userImage: userImage || 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150'
     };
 
     db.comments.push(newComment);
